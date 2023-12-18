@@ -1,0 +1,11 @@
+@use "base/variables" as v;
+@use "base/mixins" as m;
+
+.header_admin{
+    background-color: v.$verdeClaro;
+}
+
+.alto{
+    height: 90vh;
+    
+}
