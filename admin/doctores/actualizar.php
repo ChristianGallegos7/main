@@ -67,28 +67,46 @@
             $errores[] = "El horario es requerido";
         }
 
-        if(!$foto['name']){
-            $errores[] = "La foto es requerida";
-        }
+        
 
         if(empty($errores)){
 
-            //SUBIR ARCHIVOS
+            // //SUBIR ARCHIVOS
+            // //CREEAAMOS LAA CARPETAA
 
-            //CREEAAMOS LAA CARPETAA
             $carpetaImagenes = "../../imagenes/";
-
-            //si la carpeta no existe la crea
+            // SI LA CARPETA NO EXISTE LA CREA
             if(!is_dir($carpetaImagenes)){
                 mkdir($carpetaImagenes);
             }
-            //Generar un nombre unico para cada imagen
-            $nombreImagen = md5(uniqid(rand(),true)) . ".jpg";
-            //subir la imagen
-            move_uploaded_file($foto['tmp_name'], $carpetaImagenes . $nombreImagen);
+
+            $nombreImagen = '';
+            //si actualizamos la imagen tenemos que eliminarla de la carpeta para que no se llene el servidor
+
+            if ($foto['name']) {
+                // ELIMINAR LA IMAGEN PREVIA
+                unlink($carpetaImagenes . $datosDoctor['foto']);
+                
+                // GENERAR UN NOMBRE ÚNICO PARA LA NUEVA IMAGEN
+                $nombreImagen = md5(uniqid(rand(), true)) . ".jpg";
+                
+                // SUBIR LA NUEVA IMAGEN
+                move_uploaded_file($foto['tmp_name'], $carpetaImagenes . $nombreImagen);
+            } else {
+                // SI NO SE SUBE UNA NUEVA IMAGEN, MANTENER LA IMAGEN ACTUAL
+                $nombreImagen = $datosDoctor['foto'];
+            }
+
+
 
             //query para insertarwd
-            $doctor = "INSERT INTO tbl_doctores(nombre,apellido,especialidad,horario,foto) VALUES('$nombre','$apellido','$especialidad','$horario', '$nombreImagen')";
+            $doctor = "UPDATE tbl_doctores SET 
+            nombre = '$nombre',
+            apellido = '$apellido', 
+            especialidad = '$especialidad',
+            horario = '$horario',
+            foto = '$nombreImagen'
+            WHERE id = $id ";
 
             //insertar en la base
             $result = mysqli_query($conexion,$doctor);
@@ -96,7 +114,7 @@
             if($result){
                 //redireccionar si se inserto correctamente el doctor en la base de datos
                 //mandamos el parametro resultado para crear la alerta desde el index
-                header('Location: index.php?resultado=1');
+                header('Location: index.php?resultado=2');
             }
         }
     }

@@ -35,8 +35,12 @@
 <body>
 
     <?php if ($resultado == 1) : ?>
-        <p>Doctor creado correctamente</p>
+        <p>Doctor Creado Correctamente</p>
+        <?php elseif ($resultado == 2) : ?>
+            <p>Doctor Actualizado Correctamente</p>
     <?php endif; ?>
+
+    
 
     <a href="http://localhost/proyecto/admin/doctores/crear.php">Crear doctor</a>
 
@@ -64,7 +68,9 @@
                 <td><img width="100px" src="../../imagenes/<?php echo $doctor['foto'];?>" alt="IMAGEN DEL DOCTOR"></td>
                 <td>
                     <a href="./actualizar.php?id=<?php echo $doctor['id'];?>">Editar</a>
-                    <a href="">Eliminar</a>
+                    <form action="">
+                        <input type="hidden" name="id" value="id">
+                    </form>
                 </td>
 
             </tr>

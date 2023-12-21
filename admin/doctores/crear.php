@@ -124,7 +124,7 @@
                 </div>
                 <div>
                     <label for="foto">Foto:</label>
-                    <input type="file" name="foto" id="foto" accept=".jpg" value="<?php echo $foto;?>">
+                    <input type="file" name="foto" id="foto" accept=".jpg, .png" value="<?php echo $foto;?>">
                 </div>
 
                 <button type="submit" class="btn-verde">Añadir Doctor</button>
