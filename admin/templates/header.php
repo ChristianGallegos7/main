@@ -24,7 +24,7 @@
                         <a href="#" class=" auth animate__animated animate__fadeInRight">Citas Médicas</a>
                     </li>
                     <li>
-                        <a href="" class=" auth animate__animated animate__fadeInRight">Doctores</a>
+                        <a href="http://localhost/proyecto/admin/doctores/index.php" class=" auth animate__animated animate__fadeInRight">Doctores</a>
                     </li>
                 </ul>
             </nav>
