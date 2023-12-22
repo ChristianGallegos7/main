@@ -11,6 +11,24 @@
 
     //muestra mensaje condicional si se crea el doctor
     $resultado = $_GET['resultado'] ?? null;
+
+    if($_SERVER['REQUEST_METHOD']== 'POST'){
+        $id = $_POST['id'];
+        $id = filter_var($id, FILTER_VALIDATE_INT);
+
+        var_dump($id);
+
+        if($id){
+            //elimar el doctor
+            $queryEliminar = "DELETE FROM tbl_doctores where id = '$id'";
+            $resultado = mysqli_query($conexion,$queryEliminar);
+
+            if($resultado){
+                header('Location: index.php');
+            }
+        }
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -68,8 +86,9 @@
                 <td><img width="100px" src="../../imagenes/<?php echo $doctor['foto'];?>" alt="IMAGEN DEL DOCTOR"></td>
                 <td>
                     <a href="./actualizar.php?id=<?php echo $doctor['id'];?>">Editar</a>
-                    <form action="">
-                        <input type="hidden" name="id" value="id">
+                    <form method="POST">
+                        <input type="hidden" name="id" value="<?php echo $doctor['id']?>">
+                        <input type="submit" value="Eliminar">
                     </form>
                 </td>
 
