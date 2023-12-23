@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     //hash a la contraseña
     $contrasenaHash = password_hash($contrasena, PASSWORD_BCRYPT);
-
+    
     if (empty($errores)) {
         //query para insertar en la base
         $query = "INSERT INTO tbl_usuarios(nombre,apellido,cedula,telefono,correo,contrasena) VALUES('$nombre','$apellido','$cedula','$telefono','$correo','$contrasenaHash')";
