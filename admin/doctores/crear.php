@@ -1,4 +1,6 @@
 <?php
+  
+
     include "../templates/header.php";
     //base de datos
     include "../../includes/config/database.php";

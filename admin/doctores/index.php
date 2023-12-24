@@ -1,4 +1,5 @@
 <?php
+
 include "../templates/header.php";
 
 include "../../includes/config/database.php";
