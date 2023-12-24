@@ -1,5 +1,10 @@
 <?php
+    require "funciones.php";
+    require "config/database.php";
+    require __DIR__ . '/../vendor/autoload.php';
 
-    define('TEMPLATE_URL', __DIR__ . '/templates');
+    use App\Doctor;
 
-?>
+    $doctor = new Doctor;
+
+    
